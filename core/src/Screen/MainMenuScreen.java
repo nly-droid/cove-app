@@ -40,7 +40,6 @@ public class MainMenuScreen implements Screen {
   private Texture soundPlay;
   private Texture soundStop;
 
-
   public MainMenuScreen(CoveApplication app) {
     this.coveApplication = app;
     // Credit: Ciera Elizabeth Hoover [SugarMoonWitch]/ http://sugarmoonwitch.com/
@@ -51,6 +50,7 @@ public class MainMenuScreen implements Screen {
     stage = new Stage(viewport, coveApplication.batch);
     buttonTextureUp = new Texture(Gdx.files.internal("up.png"));
     buttonTextureDown = new Texture(Gdx.files.internal("down.png"));
+
     bgMusic = Gdx.audio.newMusic(Gdx.files.internal("menuMusic.wav"));
     bgMusic.setLooping(true);
     bgMusic.play();
@@ -130,7 +130,6 @@ public class MainMenuScreen implements Screen {
   }
 
   private TextButton generateTextButton(String text){
-    Drawable play = new TextureRegionDrawable(new TextureRegion(buttonTextureUp));
     TextButton button = new TextButton(text, generateButtonSyle());
     button.getLabelCell().pad(10);
     return button;
@@ -160,7 +159,7 @@ public class MainMenuScreen implements Screen {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     stage.getBatch().begin();
     stage.getBatch().draw(bg, 0, 0,
-        coveApplication.WORLD_WIDTH,coveApplication.WORLD_WIDTH);
+        CoveApplication.WORLD_WIDTH,CoveApplication.WORLD_WIDTH);
     stage.getBatch().end();
     stage.act();
     stage.draw();
