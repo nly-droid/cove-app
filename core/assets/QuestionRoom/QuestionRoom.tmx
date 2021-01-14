@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="4">
+ <tileset firstgid="1" source="fishSpritesheet.tsx"/>
+ <tileset firstgid="505" source="door.tsx"/>
+ <layer id="1" name="Water" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxzZGRgcAJiZyB2AWJHPHx8cqTyU4E4DYjTgTiDAJ8UtYT4MLfQm4a5hd70qH9H/Tvq31H/jvp31L+j/qU/DQDyZcp7
+  </data>
+ </layer>
+ <layer id="6" name="Door" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBjAT0YIpjf4xQjBo2AUjALqAQADKgPr
+  </data>
+ </layer>
+ <layer id="5" name="Decoration2" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQAhsBOJNA2DnVSC+hiR2EYgv0dhemJ3XCCkcBaNgFOAEANfQB+Q=
+  </data>
+ </layer>
+ <layer id="4" name="Decoration" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztj8sJgDAQRNcitBftxfSiHWkj/m3E79G5LFnEgErwIPvgHYYkO1kiRVF8UwVEdfDd7Aa5hROcYQd7z/08W7Igr6Jvg7vHXt7Lhe8+5rzXW1JoHtwPYUR2r4KspZyLM3PxL+7LYO7ol2+5L4aJyINwvPFv7nPlM9znyoryBw6CRSev
+  </data>
+ </layer>
+ <layer id="2" name="Sand" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0bcRAkEQRcEjfwutNSmg4dAiBUQqiPYI4KoWZ19VG98Ya5IkFovFYrFfZSpUqVGnQZMWbTp06dFnwJBRhvs5C5asWJOyYcuOPQeOnDhz4ZrhPk+BIqWAe8yEKbOA+8adB8+A+8WbD0ku3P7Xf79NkZDv
+  </data>
+ </layer>
+ <layer id="3" name="Deadfish" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIA8WMDAwljPS3dzrQzhkE7C0HyleQ4bZsoJ4cCvw0G6h3Dg791UDxGhxy/UDxCTQKy/lAcxcMQDyNAgYGALkeCHk=
+  </data>
+ </layer>
+ <objectgroup id="7" name="Door">
+  <object id="2" x="829.333" y="353.333" width="65.3333" height="84"/>
+  <object id="3" x="898.667" y="429.333"/>
+ </objectgroup>
+</map>
