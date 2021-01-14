@@ -1,33 +1,29 @@
 package com.github.nlydroid.coveapp;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import Screen.*;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class CoveApplication extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+public class CoveApplication extends Game {
+	public SpriteBatch batch;
+	public static final int WORLD_WIDTH = 960;
+  public static final int WORLD_HEIGHT = 640;
+
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		this.setScreen(new MainMenuScreen(this));
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		super.render();
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
+		screen.dispose();
 	}
 }

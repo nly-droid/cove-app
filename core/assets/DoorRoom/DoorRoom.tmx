@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="60" height="35" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="20">
+ <tileset firstgid="1" name="fishSpritesheet" tilewidth="32" tileheight="32" tilecount="289" columns="17">
+  <image source="../../../../assets/kenney_fishpack/Spritesheet/fishSpritesheet.png" width="569" height="569"/>
+ </tileset>
+ <tileset firstgid="290" source="fishTilesheet@2.tsx"/>
+ <tileset firstgid="2306" source="door.tsx"/>
+ <layer id="2" name="Water" width="60" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztx0sBglAUBcC7kTAI5QSLmMAcgGX49PDkeMxiFrM/qo4444q98fdd1TOGGLv2/4op5njf4EusscXvBv9UfQEAAAAAAABa9Acmdju8
+  </data>
+ </layer>
+ <layer id="3" name="Door" width="60" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztz7EKACAIBcCoqf//4YaWRkMhgjt421O0NQAAAAAAgDp97lT0o7uyvdubT2PuVPSju7K925szs7//C8A7C5Q5AaU=
+  </data>
+ </layer>
+ <layer id="7" name="Number" width="60" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztz8EKQUEUh/HZXW9DURRF8U4URVEU70RRFEXxDhRFURQL/+Vd3KkzNwuL77c8fec04xwAAAAAAAAAAPi1Y+TcKbL3Z7UXT3/V/Ga4dVfzMHRPNa+E7q3ZJ+DNcdmMc7mMvc+rLXj6ouYlw62ymoqhq6qpJXR1zRoBb45raq8VsNtW2/H0Xc17hlt9NQNDN1QzSujGmk1S/neqvVnA7lztwtMvNV8Zbq3VbAzdVs0uodtrdkj5XwDAf/gC9tse/Q==
+  </data>
+ </layer>
+ <layer id="1" name="Sand" width="60" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztkMEJAkEQBE8/5qQh6FtDUNAAFDQADUFD9WN/BpbF8WZ3xQWpgqa5u+6ZY4YBAAAAAAAAAAAAAADe8Zz1/gOAPkyk6Y+9x07ztbSR5tIiea711jnRfukey2+lnbSUVsmz53vp8OF76xyvn+eje/L8UToV+Fm6JPcay3s5mxPtR/Nje+1uV+lW4Hav/H0+z8t5XtuP9uxud+nxBW+dV9uP9rz7/Ku/AHjLptA=
+  </data>
+ </layer>
+ <layer id="4" name="Decoration" width="60" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztlE0KwjAQhac/lO70BP6sda830RPYioKC3klXtqKgN9Db6BF8m0IstCZtqi7eBwOFZCbvTTIVIYQQQgghhBBCCLFHFIrE4a9VFGNbX4Ja6R/7bUrfCjXXluvq3o3Ovjr6Fshbhu91LoirZb+6d6PuU7Wp33X0nZB3ztVRa3+T/L2p2tTvMqrMuG5tG2epZP2u8l6znKb/Qao2W2dVea9NzGDZOdkMmN5NJxDpInqIfqCft3NE9o65Xl1ursjdLV7PZsC0zzN4jBAxYm7g9wGvzxp+B77I0C9eb3kiba96/SIO8JggUsTRwO8IvR+X9P8TG3jdlvidwOu0Ab+EEELIP/ACCxA5nQ==
+  </data>
+ </layer>
+ <objectgroup id="8" name="Door 1">
+  <object id="7" x="226.749" y="832.693" width="58.929" height="67.8965"/>
+ </objectgroup>
+ <objectgroup id="9" name="Door 2">
+  <object id="11" x="611.068" y="839.098" width="58.929" height="67.8965"/>
+ </objectgroup>
+ <objectgroup id="10" name="Door 3">
+  <object id="13" x="835.255" y="837.817" width="57.648" height="67.8965"/>
+ </objectgroup>
+ <objectgroup id="11" name="Door 4">
+  <object id="15" x="1155.52" y="837.817" width="57.648" height="70.4586"/>
+ </objectgroup>
+ <objectgroup id="12" name="Door 5">
+  <object id="17" x="1478.35" y="841.66" width="53.8048" height="67.8965"/>
+ </objectgroup>
+ <objectgroup id="14" name="Door 6">
+  <object id="19" x="1664.1" y="837.179" width="61.5385" height="73.0769"/>
+ </objectgroup>
+</map>
