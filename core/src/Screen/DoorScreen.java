@@ -3,15 +3,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.github.nlydroid.coveapp.CoveApplication;
@@ -29,10 +32,17 @@ public class DoorScreen implements Screen {
   private Robot robot;
   private Music bgMusic;
   private Vector3 mapDimension;
-  private Texture soundPlay;
-  private Texture soundStop;
+  private Music knocking;
+  private Sound out;
 
   public DoorScreen(CoveApplication coveApplication) {
+    this.coveApplication = coveApplication;
+    //free sound effects from https://www.fesliyanstudios.com
+    knocking = Gdx.audio.newMusic(Gdx.files.internal("Sound/knocking.mp3"));
+    knocking.setVolume(0.5f);
+
+    out = Gdx.audio.newSound(Gdx.files.internal("Sound/click5.ogg"));
+
     mapLoader = new TmxMapLoader();
     map = mapLoader.load("DoorRoom/DoorRoom.tmx");
     renderer = new OrthogonalTiledMapRenderer(map);
@@ -40,7 +50,7 @@ public class DoorScreen implements Screen {
     mapDimension = new Vector3(prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class),
         prop.get("height", Integer.class) * prop.get("tileheight", Integer.class), 0);
 
-    this.coveApplication = coveApplication;
+
     camera = new OrthographicCamera();
     camera.setToOrtho(false, CoveApplication.WORLD_WIDTH, CoveApplication.WORLD_HEIGHT);
     viewport = new FitViewport(CoveApplication.WORLD_WIDTH, CoveApplication.WORLD_HEIGHT, camera);
@@ -48,7 +58,7 @@ public class DoorScreen implements Screen {
 
     renderer.setView(camera);
 
-    robot = new Robot(0, 210);
+    robot = new Robot(20, 210);
 
     bgMusic = Gdx.audio.newMusic(Gdx.files.internal("WanderingHearts.mp3"));
     bgMusic.setLooping(true);
@@ -75,6 +85,21 @@ public class DoorScreen implements Screen {
         robot.switchDirection(Robot.LEFT);
       }
     }
+
+    Array<RectangleMapObject> rects = map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class);
+    for (int i = 0; i < rects.size; i++){
+      Rectangle door = rects.get(i).getRectangle();
+      if ((robot.getBound().overlaps(door))){
+        if (!knocking.isPlaying()){
+          knocking.play();
+        }
+        if ((Gdx.input.isKeyPressed(Input.Keys.ENTER) ||
+            (Gdx.input.isKeyPressed(Input.Keys.SPACE)))){
+          out.play(0.5f);
+          coveApplication.setScreen(new QuestionScreen(coveApplication, i));
+        }
+      }
+    }
   }
 
   @Override
@@ -85,19 +110,18 @@ public class DoorScreen implements Screen {
 
   @Override
   public void render(float delta) {
-    camera.update();
-
     Gdx.gl.glClearColor(0,1,0,1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
     handleInput();
-    viewport.apply();
-    camera.position.set(robot.getX() + camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+    camera.position.set(robot.getX() + (camera.viewportWidth / 2f) - (camera.viewportWidth / 3f), camera.viewportHeight / 2f, 0);
+    if (camera.position.x < (camera.viewportWidth / 2f)){
+      camera.position.x = (camera.viewportWidth / 2f);
+    }
     if (camera.position.x > (mapDimension.x - (camera.viewportWidth / 2f))){
       camera.position.x = (mapDimension.x - (camera.viewportWidth / 2f));
     }
     camera.update();
-
 
     renderer.render();
     renderer.setView(camera);
@@ -134,7 +158,7 @@ public class DoorScreen implements Screen {
     stage.dispose();
     robot.dispose();
     bgMusic.dispose();
-    soundPlay.dispose();
-    soundStop.dispose();
+    knocking.dispose();
+    out.dispose();
   }
 }

@@ -78,6 +78,7 @@ public class MainMenuScreen implements Screen {
         click.play(0.2f);
         bgMusic.stop();
         coveApplication.setScreen(new DoorScreen(coveApplication));
+        dispose();
       }
     });
     TextButton exitButton = generateTextButton("EXIT");
