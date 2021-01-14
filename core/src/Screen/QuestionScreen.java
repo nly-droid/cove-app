@@ -2,118 +2,73 @@ package Screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.github.nlydroid.coveapp.CoveApplication;
-import com.github.nlydroid.coveapp.Robot;
 
-public class QuestionScreen implements Screen {
+public class QuestionScreen extends RobotScreen{
   private CoveApplication coveApplication;
-  private Array<String> questions;
-  private TmxMapLoader mapLoader;
-  private TiledMap map;
-  private OrthogonalTiledMapRenderer renderer;
-  private Vector3 mapDimension;
-  private Viewport viewport;
-  private Stage stage;
-  private OrthographicCamera camera;
-  private Music knocking;
-  private Sound out;
+  private int ID;
+  private Label question;
   private Music bgMusic;
-  private Label text;
-  private Robot robot;
-
 
   public QuestionScreen(CoveApplication coveApplication, int ID) {
+    super(coveApplication, "QuestionRoom/QuestionRoom.tmx");
     this.coveApplication = coveApplication;
-
-    camera = new OrthographicCamera();
-    viewport = new FitViewport(CoveApplication.WORLD_WIDTH, CoveApplication.WORLD_HEIGHT, camera);
-    viewport.apply();
-    stage = new Stage(viewport, coveApplication.batch);
-
-    mapLoader = new TmxMapLoader();
-    map = mapLoader.load("QuestionRoom/QuestionRoom.tmx");
-    renderer = new OrthogonalTiledMapRenderer(map);
-    MapProperties prop = map.getProperties();
-    mapDimension = new Vector3(prop.get("width", Integer.class) * prop.get("tilewidth", Integer.class),
-        prop.get("height", Integer.class) * prop.get("tileheight", Integer.class), 0);
-    renderer.setView(camera);
-
-    knocking = Gdx.audio.newMusic(Gdx.files.internal("Sound/knocking.mp3"));
-    knocking.setVolume(0.5f);
-
-    out = Gdx.audio.newSound(Gdx.files.internal("Sound/click5.ogg"));
+    this.ID = ID;
 
     bgMusic = Gdx.audio.newMusic(Gdx.files.internal("dream.wav"));
     bgMusic.setLooping(true);
     bgMusic.play();
     bgMusic.setVolume(1f);
 
-    robot = new Robot(20, 210);
   }
 
   public void handleInput(){
-    if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-      robot.moveRight(Gdx.graphics.getDeltaTime());
-      if (!(robot.getDirection() == Robot.RIGHT)){
-        robot.switchDirection(Robot.RIGHT);
+    super.handleInput();
+
+    Array<RectangleMapObject> rects = getMap().getLayers().get(6).getObjects().getByType(RectangleMapObject.class);
+    Rectangle mainDoor = rects.get(1).getRectangle();
+    Rectangle answerDoor = rects.get(0).getRectangle();
+
+    if ((getRobot().getBound().overlaps(mainDoor))) {
+      if (!getKnocking().isPlaying()) {
+        getKnocking().play();
       }
-      if (robot.getX() >= (mapDimension.x - (robot.getWidth() * robot.getScaleX()))){
-        robot.setX((mapDimension.x - (robot.getWidth() * robot.getScaleX())));
+      if ((Gdx.input.isKeyPressed(Input.Keys.ENTER) ||
+          (Gdx.input.isKeyPressed(Input.Keys.SPACE)))) {
+        getOut().play(0.5f);
+        bgMusic.stop();
+        coveApplication.setScreen(new DoorScreen(coveApplication));
+        dispose();
       }
     }
-    else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-      robot.moveLeft(Gdx.graphics.getDeltaTime());
-      if (robot.getX() < 0){
-        robot.setX(0);
+
+    if ((getRobot().getBound().overlaps(answerDoor))) {
+      if (!getKnocking().isPlaying()) {
+        getKnocking().play();
       }
-      if (!(robot.getDirection() == Robot.LEFT)){
-        robot.switchDirection(Robot.LEFT);
+      if ((Gdx.input.isKeyPressed(Input.Keys.ENTER) ||
+          (Gdx.input.isKeyPressed(Input.Keys.SPACE)))) {
+        getOut().play(0.5f);
+        bgMusic.stop();
+        coveApplication.setScreen(new AnswerScreen(coveApplication, ID));
+        dispose();
       }
     }
   }
 
   @Override
   public void show() {
-    Gdx.input.setInputProcessor(stage);
-    stage.addActor(robot);
+    super.show();
   }
 
   @Override
   public void render(float delta) {
-    Gdx.gl.glClearColor(1,1,1,1);
-    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-    handleInput();
-    camera.position.set(robot.getX() + (camera.viewportWidth / 2f) - (camera.viewportWidth / 3f), camera.viewportHeight / 2f, 0);
-    if (camera.position.x < (camera.viewportWidth / 2f)){
-      camera.position.x = (camera.viewportWidth / 2f);
-    }
-    if (camera.position.x > (mapDimension.x - (camera.viewportWidth / 2f))){
-      camera.position.x = (mapDimension.x - (camera.viewportWidth / 2f));
-    }
-    camera.update();
-
-    renderer.render();
-    renderer.setView(camera);
-
-    stage.act(Gdx.graphics.getDeltaTime());
-    stage.getBatch().setProjectionMatrix(camera.combined);
-    stage.draw();
+    super.render(delta);
   }
 
   @Override
@@ -138,12 +93,6 @@ public class QuestionScreen implements Screen {
 
   @Override
   public void dispose() {
-    map.dispose();
-    renderer.dispose();
-    stage.dispose();
-    robot.dispose();
     bgMusic.dispose();
-    knocking.dispose();
-    out.dispose();
   }
 }

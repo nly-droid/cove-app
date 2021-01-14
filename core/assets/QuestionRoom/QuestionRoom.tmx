@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="4">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="7">
  <tileset firstgid="1" source="fishSpritesheet.tsx"/>
  <tileset firstgid="505" source="door.tsx"/>
  <layer id="1" name="Water" width="30" height="20">
@@ -9,7 +9,7 @@
  </layer>
  <layer id="6" name="Door" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMBjAT0YIpjf4xQjBo2AUjALqAQADKgPr
+   eJxjYBgFo2AUjIJRQCz4yQjB9Db7FyME0wLgM5uW9o6CUTCcAQC5LwnL
   </data>
  </layer>
  <layer id="5" name="Decoration2" width="30" height="20">
@@ -34,6 +34,6 @@
  </layer>
  <objectgroup id="7" name="Door">
   <object id="2" x="829.333" y="353.333" width="65.3333" height="84"/>
-  <object id="3" x="898.667" y="429.333"/>
+  <object id="6" x="94.6372" y="351.209" width="63.0915" height="95.6888"/>
  </objectgroup>
 </map>

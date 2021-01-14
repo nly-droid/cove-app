@@ -77,7 +77,7 @@ public class MainMenuScreen implements Screen {
       public void clicked(InputEvent event, float x, float y){
         click.play(0.2f);
         bgMusic.stop();
-        coveApplication.setScreen(coveApplication.doorScreen);
+        coveApplication.setScreen(new DoorScreen(coveApplication));
         dispose();
       }
     });
