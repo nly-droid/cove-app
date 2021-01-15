@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="5">
+ <tileset firstgid="1" source="fishSpritesheet.tsx"/>
+ <tileset firstgid="505" source="door.tsx"/>
+ <layer id="1" name="Water" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxzZGRgcAJiZyB2AWJHOvFTgTgNiNOBOIOOfJg76E3D3EFvetS/o/4d9e+of0f9O+rfUf/SnwYABLzKfQ==
+  </data>
+ </layer>
+ <layer id="4" name="Door" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQAr4yQjB9Db3FyMEUxsQMneg7B0Fo2AoAwBBWwvB
+  </data>
+ </layer>
+ <layer id="7" name="Decoration3" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQG2gz8jAYMBIHbMuAvElItUGA+0MIcLeeqCaBiq5jxSwGGjnkgGwdxSMAnoDABwnBPg=
+  </data>
+ </layer>
+ <layer id="6" name="Decoration2" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztjNEJgEAMQ7uEcqsoLny3i85kPgwc4doBJA8epSlNhDHGmIoGN7hLvsqqPLtn+wUPeH55h2PKuBPm/Nc5d8WiR+/khk+xa5/OjKzHmD/wAoBnDq0=
+  </data>
+ </layer>
+ <layer id="5" name="Decoration" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjFRwnpGB4QIj/ey7CLTrEhB/BuIvQHwZiK/Qwf6vQDu+Idn3HYh/0MBeSSCWwiIOsg/md2LUw4AsEMsRIWcLxHY49MD8jk09uloY3xGInXDYi0uOFHF0MXz2jYJRMFQBAPWrFro=
+  </data>
+ </layer>
+ <layer id="2" name="Sand" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0jcOAjEARUEvOcPVCVchXIWcM1cgDBU9SEvjJ03xC8uFHUIsFovFYp/mLFiyYs2GLTv2HDhy4syFK7cfzidJCBmy5MhToEiJMhWq1KjToEkr+f58290duvRCervPgCGjFPeYCVNmKe47D57vT5akt//1vi+dBYPt
+  </data>
+ </layer>
+ <layer id="3" name="Sand Fish" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAqoB/IZGRgKGKljViXQnCoizZoMVDeFSvbOBZozj0pmUQuUA91TMQBumg20cw4Be7OB8jkkuK0YqLaECn7pB5oxgQRzpgPVzqBTGAIAAuMKew==
+  </data>
+ </layer>
+ <objectgroup id="8" name="Door">
+  <object id="2" x="826.512" y="353.364" width="69.8742" height="89.8383"/>
+  <object id="4" x="125.774" y="353.364" width="61.8886" height="97.8239"/>
+ </objectgroup>
+</map>

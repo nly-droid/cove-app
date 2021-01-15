@@ -111,7 +111,7 @@ public class MainMenuScreen implements Screen {
     stage.addActor(table);
   }
 
-  private Label.LabelStyle generateTitleLabelStyle(){
+  public Label.LabelStyle generateTitleLabelStyle(){
     FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Piedra/Piedra-Regular.ttf"));
     FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
     parameter.size = 60;

@@ -3,9 +3,13 @@ package Screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.github.nlydroid.coveapp.CoveApplication;
 
@@ -24,7 +28,6 @@ public class QuestionScreen extends RobotScreen{
     bgMusic.setLooping(true);
     bgMusic.play();
     bgMusic.setVolume(1f);
-
   }
 
   public void handleInput(){
@@ -61,9 +64,30 @@ public class QuestionScreen extends RobotScreen{
     }
   }
 
+  public Label.LabelStyle generateQuestionLabelStyle(){
+    FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto/Roboto-Regular.ttf"));
+    FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+    parameter.size = 40;
+    parameter.color = Color.BLACK;
+    BitmapFont font = generator.generateFont(parameter);
+    generator.dispose();
+    Label.LabelStyle style = new Label.LabelStyle();
+    style.font = font;
+    return style;
+  }
+
   @Override
   public void show() {
     super.show();
+    Table table = new Table();
+    table.setFillParent(true);
+    table.top();
+
+    Label question = new Label(coveApplication.questions.get(ID), generateQuestionLabelStyle());
+    question.setWrap(true);
+    table.add(question).padTop(100).width(896).center();
+    table.row();
+    getStage().addActor(table);
   }
 
   @Override

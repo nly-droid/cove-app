@@ -95,6 +95,10 @@ public abstract class RobotScreen implements Screen {
     return map;
   }
 
+  public Viewport getViewport() {
+    return viewport;
+  }
+
   public OrthographicCamera getCamera() {
     return camera;
   }

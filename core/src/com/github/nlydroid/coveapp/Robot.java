@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Robot extends Actor {
   private Sprite robot;
   private int direction;
-  private static final int SPEED = 700;
+  private static final int SPEED = 850;
   public static final int LEFT = 0;
   public static final int RIGHT = 1;
   private Rectangle bound;
